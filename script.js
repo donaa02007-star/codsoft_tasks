@@ -1,39 +1,75 @@
-// ================= MOBILE MENU =================
-
-const menuIcon = document.getElementById("menuIcon");
-const navLinks = document.getElementById("navLinks");
-
-menuIcon.addEventListener("click", function () {
-    navLinks.classList.toggle("active");
-});
+// Welcome Message
+console.log("Welcome to Donaa's Portfolio!");
 
 
-// Close menu after clicking navigation link
+// Smooth Scroll
+const navLinks = document.querySelectorAll(".nav-links a");
 
-const navItems = document.querySelectorAll(".nav-links a");
+navLinks.forEach(function (link) {
 
-navItems.forEach(function (item) {
+    link.addEventListener("click", function (event) {
 
-    item.addEventListener("click", function () {
-        navLinks.classList.remove("active");
+        event.preventDefault();
+
+        const targetId = this.getAttribute("href");
+        const targetSection = document.querySelector(targetId);
+
+        if (targetSection) {
+            targetSection.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+
     });
 
 });
 
 
-// ================= ORDER BUTTON =================
+// Scroll Animation
+const sections = document.querySelectorAll(".section");
 
-function orderNow() {
+const observer = new IntersectionObserver(
+    function (entries) {
 
-    alert("🎉 Thank you for choosing Foodie! Your order is ready.");
+        entries.forEach(function (entry) {
 
-}
+            if (entry.isIntersecting) {
+
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+
+            }
+
+        });
+
+    },
+    {
+        threshold: 0.15
+    }
+);
 
 
-// ================= ADD TO CART =================
+// Observe each section
+sections.forEach(function (section) {
 
-function addToCart(foodName) {
+    section.style.opacity = "0";
+    section.style.transform = "translateY(30px)";
+    section.style.transition =
+        "opacity 0.8s ease, transform 0.8s ease";
 
-    alert("🍴 " + foodName + " added to your order!");
+    observer.observe(section);
+
+});
+
+
+// Current Year
+const year = new Date().getFullYear();
+
+const footerText = document.querySelector("footer p");
+
+if (footerText) {
+
+    footerText.textContent =
+        `© ${year} Donaa Arokiya. All Rights Reserved.`;
 
 }
