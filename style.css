@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+
+/* Calculator */
+
+.calculator {
+    width: 360px;
+
+    padding: 25px;
+
+    border-radius: 25px;
+
+    background: #171717;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.35);
+}
+
+
+/* Title */
+
+.title {
+    text-align: center;
+
+    color: white;
+
+    margin-bottom: 20px;
+}
+
+.title h1 {
+    font-size: 25px;
+
+    margin-bottom: 5px;
+}
+
+.title p {
+    color: #999;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+}
+
+
+/* Display */
+
+.display {
+    min-height: 110px;
+
+    padding: 20px;
+
+    margin-bottom: 18px;
+
+    border-radius: 15px;
+
+    background: #242424;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    align-items: flex-end;
+
+    overflow: hidden;
+}
+
+#previousDisplay {
+    color: #888;
+
+    font-size: 16px;
+
+    min-height: 22px;
+}
+
+#currentDisplay {
+    font-size: 40px;
+
+    font-weight: 600;
+
+    max-width: 100%;
+
+    overflow: hidden;
+}
+
+
+/* Buttons */
+
+.buttons {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+}
+
+button {
+    height: 60px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background: #303030;
+
+    color: white;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #414141;
+
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+
+/* Special buttons */
+
+.clear {
+    background: #e74c3c;
+}
+
+.clear:hover {
+    background: #f05a4a;
+}
+
+.delete {
+    background: #555;
+}
+
+.operator {
+    background: #ff8c42;
+}
+
+.operator:hover {
+    background: #ff9e5d;
+}
+
+.equal {
+    background: #667eea;
+}
+
+.equal:hover {
+    background: #7b8df0;
+}
+
+.zero {
+    grid-column: span 2;
+}
+
+
+/* Mobile */
+
+@media (max-width: 400px) {
+
+    .calculator {
+        width: 92%;
+        padding: 20px;
+    }
+
+    button {
+        height: 55px;
+    }
+
+    #currentDisplay {
+        font-size: 32px;
+    }
+}
