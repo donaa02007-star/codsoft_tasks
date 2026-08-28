@@ -1,218 +1,39 @@
-let currentNumber = "";
-let previousNumber = "";
-let operator = null;
+// ================= MOBILE MENU =================
 
+const menuIcon = document.getElementById("menuIcon");
+const navLinks = document.getElementById("navLinks");
 
-// Get display elements
+menuIcon.addEventListener("click", function () {
+    navLinks.classList.toggle("active");
+});
 
-const currentDisplay = document.getElementById("currentDisplay");
-const previousDisplay = document.getElementById("previousDisplay");
 
+// Close menu after clicking navigation link
 
-// Add number
+const navItems = document.querySelectorAll(".nav-links a");
 
-function appendNumber(number) {
+navItems.forEach(function (item) {
 
-    // Prevent multiple decimal points
-
-    if (number === "." && currentNumber.includes(".")) {
-        return;
-    }
-
-    // Don't allow 0 at the beginning
-
-    if (currentNumber === "0" && number !== ".") {
-        currentNumber = "";
-    }
-
-    currentNumber += number;
-
-    updateDisplay();
-}
-
-
-// Choose operator
-
-function chooseOperator(selectedOperator) {
-
-    if (currentNumber === "" && previousNumber === "") {
-        return;
-    }
-
-    // If an operator already exists, calculate first
-
-    if (currentNumber !== "" && previousNumber !== "") {
-        calculate();
-    }
-
-    if (currentNumber !== "") {
-        previousNumber = currentNumber;
-        currentNumber = "";
-    }
-
-    operator = selectedOperator;
-
-    updateDisplay();
-}
-
-
-// Calculate result
-
-function calculate() {
-
-    if (previousNumber === "" || currentNumber === "" || operator === null) {
-        return;
-    }
-
-    const previous = parseFloat(previousNumber);
-    const current = parseFloat(currentNumber);
-
-    let result;
-
-
-    // Operators
-
-    if (operator === "+") {
-
-        result = previous + current;
-
-    } else if (operator === "-") {
-
-        result = previous - current;
-
-    } else if (operator === "*") {
-
-        result = previous * current;
-
-    } else if (operator === "/") {
-
-        if (current === 0) {
-            alert("Cannot divide by zero!");
-            clearDisplay();
-            return;
-        }
-
-        result = previous / current;
-
-    } else if (operator === "%") {
-
-        result = previous % current;
-
-    }
-
-
-    currentNumber = result.toString();
-
-    previousNumber = "";
-
-    operator = null;
-
-    updateDisplay();
-}
-
-
-// Clear calculator
-
-function clearDisplay() {
-
-    currentNumber = "";
-    previousNumber = "";
-    operator = null;
-
-    updateDisplay();
-}
-
-
-// Delete last number
-
-function deleteNumber() {
-
-    currentNumber = currentNumber.slice(0, -1);
-
-    updateDisplay();
-}
-
-
-// Update display
-
-function updateDisplay() {
-
-    currentDisplay.textContent =
-        currentNumber || "0";
-
-
-    if (previousNumber !== "" && operator !== null) {
-
-        let displayOperator = operator;
-
-        if (operator === "*") {
-            displayOperator = "×";
-        }
-
-        if (operator === "/") {
-            displayOperator = "÷";
-        }
-
-        if (operator === "-") {
-            displayOperator = "−";
-        }
-
-        previousDisplay.textContent =
-            previousNumber + " " + displayOperator;
-
-    } else {
-
-        previousDisplay.textContent = "";
-    }
-}
-
-
-// Keyboard support
-
-document.addEventListener("keydown", function(event) {
-
-    const key = event.key;
-
-
-    // Numbers
-
-    if (key >= "0" && key <= "9") {
-        appendNumber(key);
-    }
-
-
-    // Decimal
-
-    if (key === ".") {
-        appendNumber(".");
-    }
-
-
-    // Operators
-
-    if (key === "+" || key === "-" || key === "*" || key === "/") {
-        chooseOperator(key);
-    }
-
-
-    // Enter = calculate
-
-    if (key === "Enter" || key === "=") {
-        calculate();
-    }
-
-
-    // Backspace
-
-    if (key === "Backspace") {
-        deleteNumber();
-    }
-
-
-    // Escape = clear
-
-    if (key === "Escape") {
-        clearDisplay();
-    }
+    item.addEventListener("click", function () {
+        navLinks.classList.remove("active");
+    });
 
 });
+
+
+// ================= ORDER BUTTON =================
+
+function orderNow() {
+
+    alert("🎉 Thank you for choosing Foodie! Your order is ready.");
+
+}
+
+
+// ================= ADD TO CART =================
+
+function addToCart(foodName) {
+
+    alert("🍴 " + foodName + " added to your order!");
+
+}
